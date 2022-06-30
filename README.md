@@ -2,8 +2,6 @@
 
 [![MIT license](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE.md)
 
-
-
 This project was generated with [swaaplate](https://github.com/inpercima/swaaplate) version 2.3.5-SNAPSHOT.
 
 ## Prerequisites
