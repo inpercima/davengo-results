@@ -2,13 +2,13 @@
 
 [![MIT license](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE.md)
 
-This project was generated with [swaaplate](https://github.com/inpercima/swaaplate) version 2.3.5.
+This project was generated with [swaaplate](https://github.com/inpercima/swaaplate) version 2.3.7.
 
 ## Prerequisites
 
 ### Angular CLI
 
-* `angular-cli 14.0.6` or higher
+* `angular-cli 14.1.0` or higher
 
 ### Node, npm or yarn
 
