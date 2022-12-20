@@ -1,4 +1,4 @@
-name: CI/CD
+name: Node CI/CD
 
 on:
   push:
@@ -13,12 +13,13 @@ jobs:
     - name: Setup node
       uses: actions/setup-node@v3
       with:
-        node-version: '16.x'
+        node-version: '18.x'
     - name: Install and Build
       run: |
           yarn install
           yarn build:prod
     - name: Deploy
-      uses: JamesIves/github-pages-deploy-action@v4
+      uses: JamesIves/github-pages-deploy-action@v4.4.1
       with:
+        branch: gh-pages
         folder: dist
