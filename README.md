@@ -1,6 +1,7 @@
 # Davengo results
 
 [![MIT license](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE.md)
+[![Node CI/CD](https://github.com/inpercima/davengo-results/actions/workflows/ci_cd.yml/badge.svg)](https://github.com/inpercima/davengo-results/actions/workflows/ci_cd.yml)
 
 This project was generated with [swaaplate](https://github.com/inpercima/swaaplate) version 2.5.0.
 
