@@ -7,16 +7,11 @@ describe('DashboardComponent', () => {
   let component: DashboardComponent;
   let fixture: ComponentFixture<DashboardComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [
-        DashboardComponent,
-      ],
-      imports: [
-        HttpClientModule,
-      ],
-    })
-    .compileComponents();
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [DashboardComponent],
+      imports: [HttpClientModule],
+    });
 
     fixture = TestBed.createComponent(DashboardComponent);
     component = fixture.componentInstance;
