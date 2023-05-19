@@ -9,8 +9,7 @@ describe('DashboardComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [DashboardComponent],
-      imports: [HttpClientModule],
+      imports: [HttpClientModule, DashboardComponent],
     });
 
     fixture = TestBed.createComponent(DashboardComponent);

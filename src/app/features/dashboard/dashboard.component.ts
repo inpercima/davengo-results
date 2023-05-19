@@ -5,12 +5,12 @@ import { DashboardService } from './dashboard.service';
 @Component({
   selector: 'dr-dashboard',
   templateUrl: './dashboard.component.html',
+  standalone: true,
 })
 export class DashboardComponent implements OnInit {
-
-  constructor(private dashboardService: DashboardService) { }
+  constructor(private dashboardService: DashboardService) {}
 
   ngOnInit(): void {
-    this.dashboardService.getX().subscribe(x => console.log(x));
+    this.dashboardService.getX().subscribe((x) => console.log(x));
   }
 }
