@@ -3,10 +3,9 @@ import { Injectable } from '@angular/core';
 import { forkJoin, map, Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DashboardService {
-
   private urls = [
     'https://www.davengo.com/event/result/6-commerzbank-firmenlauf-2013/',
     'https://www.davengo.com/event/result/7-commerzbank-firmenlauf-2014/',
@@ -21,22 +20,20 @@ export class DashboardService {
     'https://www.davengo.com/event/result/schnellestellede-firmenlauf-2022/',
   ];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getX(): Observable<any> {
-    return forkJoin(this.urls.map(url => this.fetch(url))).pipe(
-      map(response => response)
-    );
+    return forkJoin(this.urls.map((url) => this.fetch(url))).pipe(map((response) => response));
   }
 
   private fetch(url: string): Observable<any> {
     return this.http.post<any>(`${url}search/list`, {
-      category:	"Einzelwertung",
-      offset:	0,
+      category: 'Einzelwertung',
+      offset: 0,
       query: {
-        lastName: ""
+        lastName: '',
       },
-      type:	"extended"
+      type: 'extended',
     });
   }
 }
