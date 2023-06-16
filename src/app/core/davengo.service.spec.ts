@@ -1,10 +1,10 @@
 import { HttpClientModule } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 
-import { DashboardService } from './dashboard.service';
+import { DavengoService } from './davengo.service';
 
-describe('DashboardService', () => {
-  let service: DashboardService;
+describe('DavengoService', () => {
+  let service: DavengoService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -12,7 +12,7 @@ describe('DashboardService', () => {
         HttpClientModule
       ],
     }).compileComponents();
-    service = TestBed.inject(DashboardService);
+    service = TestBed.inject(DavengoService);
   });
 
   it('should be created', () => {

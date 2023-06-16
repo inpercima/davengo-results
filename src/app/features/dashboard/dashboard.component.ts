@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { DashboardService } from './dashboard.service';
+import { DavengoService } from '../../core/davengo.service';
 
 @Component({
   selector: 'dr-dashboard',
@@ -8,9 +8,9 @@ import { DashboardService } from './dashboard.service';
   standalone: true,
 })
 export class DashboardComponent implements OnInit {
-  constructor(private dashboardService: DashboardService) {}
+  constructor(private dashboardService: DavengoService) {}
 
   ngOnInit(): void {
-    this.dashboardService.getX().subscribe((x) => console.log(x));
+    this.dashboardService.getRuns().subscribe((x) => console.log(x));
   }
 }
