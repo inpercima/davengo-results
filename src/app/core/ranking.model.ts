@@ -11,11 +11,15 @@ export interface Ranking {
   rank: string;
 
   startNumber: number;
+
+  year: string;
+
+  nettoTime: string;
 }
 
 export interface YearRanking {
 
-  results: Ranking[];
+  rankings: Ranking[];
 
   year: string;
 }

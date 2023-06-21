@@ -1,31 +1,50 @@
 <mat-card class="w-4/5 mx-auto">
   <mat-card-content>
-    <!-- <form [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
-      <div class="flex gap-5 items-center">
-        <mat-form-field class="basis-11/12" hintLabel="Enter the teams you want to see in contest and create a url to send to friends.">
-          <mat-label>Teams</mat-label>
-          <input matInput formControlName="filter" (keyup)="applyFilter($event)" />
+    <form [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
+      <div class="flex gap-5">
+        <mat-form-field class="basis-1/2">
+          <mat-label>First name</mat-label>
+          <input matInput formControlName="firstName" minlength="3" />
         </mat-form-field>
-        <button class="flex-1" mat-raised-button color="primary" [disabled]="!this.form.valid">URL</button>
+        <mat-form-field class="basis-1/2">
+          <mat-label>Last name</mat-label>
+          <input matInput formControlName="lastName" minlength="3" />
+        </mat-form-field>
       </div>
-    </form> -->
+      <div class="flex mb-4">
+        <button class="flex-1" mat-raised-button color="primary" [disabled]="!this.form.valid">Search</button>
+      </div>
+    </form>
+    {{ form.value.firstName.status }}
     <mat-table [dataSource]="dataSource" class="mat-elevation-z8" *ngIf="dataSource">
-      <!-- Column -->
-      <ng-container matColumnDef="column1">
-        <mat-header-cell *matHeaderCellDef>column1</mat-header-cell>
-        <mat-cell *matCellDef="let element"></mat-cell>
+      <!-- Column Year -->
+      <ng-container matColumnDef="year">
+        <mat-header-cell *matHeaderCellDef>Year</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.year }}</mat-cell>
       </ng-container>
 
-      <!-- Column -->
-      <ng-container matColumnDef="column2">
-        <mat-header-cell *matHeaderCellDef>column2</mat-header-cell>
-        <mat-cell *matCellDef="let element"></mat-cell>
+      <!-- Column Name -->
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.firstName + ' ' + element.lastName }}</mat-cell>
       </ng-container>
 
-      <!-- Column -->
-      <ng-container matColumnDef="column3">
-        <mat-header-cell *matHeaderCellDef>column3</mat-header-cell>
-        <mat-cell *matCellDef="let element"></mat-cell>
+      <!-- Column TeamName -->
+      <ng-container matColumnDef="teamName">
+        <mat-header-cell *matHeaderCellDef>Team name</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.teamName }}</mat-cell>
+      </ng-container>
+
+      <!-- Column Rank -->
+      <ng-container matColumnDef="rank">
+        <mat-header-cell *matHeaderCellDef>Rank</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.rank }}</mat-cell>
+      </ng-container>
+
+      <!-- Column Time -->
+      <ng-container matColumnDef="nettoTime">
+        <mat-header-cell *matHeaderCellDef>Time</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.nettoTime }}</mat-cell>
       </ng-container>
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

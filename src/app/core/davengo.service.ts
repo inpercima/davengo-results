@@ -2,12 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { forkJoin, map, mergeMap, Observable, toArray } from 'rxjs';
 import { Ranking, YearRanking } from './ranking.model';
+import { Run, RunResult } from './run.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DavengoService {
   private urls = [
+    'https://www.davengo.com/event/result/5-commerzbank-firmenlauf-2012/',
     'https://www.davengo.com/event/result/6-commerzbank-firmenlauf-2013/',
     'https://www.davengo.com/event/result/7-commerzbank-firmenlauf-2014/',
     'https://www.davengo.com/event/result/commerzbank-firmenlauf-2015/',
@@ -16,45 +18,51 @@ export class DavengoService {
     'https://www.davengo.com/event/result/schnellestellede-firmenlauf-2018/',
     'https://www.davengo.com/event/result/schnellestellede-firmenlauf-2019/',
     /** no listing for 2020 */
-    //'https://www.davengo.com/event/result/schnellestellede-firmenlauf-2020/',
+    /* 'https://www.davengo.com/event/result/schnellestellede-firmenlauf-2020/',
+     */
     'https://www.davengo.com/event/result/schnellestellede-firmenlauf-2021/',
     'https://www.davengo.com/event/result/schnellestellede-firmenlauf-2022/',
+    /** wait until run 2023
+     * 'https://www.davengo.com/event/result/schnellestellede-firmenlauf-2023/',
+     */
   ];
 
   constructor(private http: HttpClient) {}
 
-  getRuns(): Observable<YearRanking[]> {
-    return forkJoin(this.urls.map((url) => this.fetch(url)));
+  getRuns(firstName: string, lastName: string): Observable<YearRanking[]> {
+    return forkJoin(this.urls.map((url) => this.fetch(url, firstName, lastName)));
   }
 
-  private fetch(url: string): Observable<YearRanking> {
+  private fetch(url: string, firstName: string, lastName: string): Observable<YearRanking> {
     return this.http
-      .post<any>(`${url}search/list`, {
+      .post<Run>(`${url}search/list`, {
         category: 'Einzelwertung',
         offset: 0,
         query: {
-          lastName: '',
-          firstName: 'Marcel',
+          firstName: firstName,
+          lastName: lastName,
         },
         type: 'extended',
       })
       .pipe(
         mergeMap((response) => response.results),
-        map((result: any) => {
+        map((runResult: RunResult) => {
           return {
-            teamName: result.teamName,
-            firstName: result.firstName,
-            lastName: result.lastName,
-            company: result.firma,
-            rank: result.rankTotal,
-            startNumber: result.startNo,
+            teamName: runResult.teamName ?? runResult.team,
+            firstName: runResult.firstName,
+            lastName: runResult.lastName,
+            company: runResult.firma,
+            rank: runResult.rankTotal,
+            startNumber: runResult.startNo,
+            nettoTime: runResult.nettoTime,
+            year: url.slice(url.length - 5, url.length - 1),
           } as Ranking;
         }),
         toArray(),
-        map((results) => {
+        map((rankings) => {
           return {
             year: url.slice(url.length - 5, url.length - 1),
-            results: results,
+            rankings,
           } as YearRanking;
         })
       );
