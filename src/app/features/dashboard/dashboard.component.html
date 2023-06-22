@@ -11,11 +11,13 @@
           <input matInput formControlName="lastName" minlength="3" />
         </mat-form-field>
       </div>
-      <div class="flex mb-4">
-        <button class="flex-1" mat-raised-button color="primary" [disabled]="!this.form.valid">Search</button>
+      <div class="flex mb-3">
+        <button class="flex-1" mat-raised-button color="primary" [disabled]="!this.form.valid || loading">Search</button>
       </div>
     </form>
-    {{ form.value.firstName.status }}
+    <div class="h-1 mb-3">
+      <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+    </div>
     <mat-table [dataSource]="dataSource" class="mat-elevation-z8" *ngIf="dataSource">
       <!-- Column Year -->
       <ng-container matColumnDef="year">

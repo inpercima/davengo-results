@@ -7,17 +7,28 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { map, mergeAll, mergeMap, toArray } from 'rxjs';
 import { Ranking } from 'src/app/core/ranking.model';
 import { DavengoService } from '../../core/davengo.service';
 
 @Component({
-  imports: [MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule, MatTableModule, NgIf, ReactiveFormsModule],
+  imports: [
+    MatButtonModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatProgressBarModule,
+    MatTableModule,
+    NgIf,
+    ReactiveFormsModule,
+  ],
   selector: 'dr-dashboard',
   standalone: true,
   templateUrl: './dashboard.component.html',
 })
 export class DashboardComponent implements OnInit {
+  loading = false;
   form!: FormGroup;
 
   dataSource = new MatTableDataSource<Ranking>();
@@ -33,6 +44,8 @@ export class DashboardComponent implements OnInit {
   }
 
   onSubmit(): void {
+    this.loading = true;
+    this.dataSource = new MatTableDataSource();
     this.dashboardService
       .getRuns(this.form.value.firstName, this.form.value.lastName)
       .pipe(
@@ -45,6 +58,9 @@ export class DashboardComponent implements OnInit {
         mergeAll(),
         toArray()
       )
-      .subscribe((ranking) => (this.dataSource = new MatTableDataSource(ranking)));
+      .subscribe((ranking) => {
+        this.dataSource = new MatTableDataSource(ranking);
+        this.loading = false;
+      });
   }
 }
