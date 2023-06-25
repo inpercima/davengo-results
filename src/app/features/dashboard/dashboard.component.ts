@@ -26,6 +26,7 @@ import { DavengoService } from '../../core/davengo.service';
   selector: 'dr-dashboard',
   standalone: true,
   templateUrl: './dashboard.component.html',
+  styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
   loading = false;

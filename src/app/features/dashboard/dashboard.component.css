@@ -1,0 +1,30 @@
+.extra-label {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  mat-header-row {
+    display: none;
+  }
+
+  mat-cell:first-of-type {
+    padding-left: 16px;
+  }
+
+  mat-row {
+    flex-direction: column;
+    align-items: start;
+    padding: 8px 24px;
+    height: auto !important;
+  }
+
+  mat-row:last-child mat-cell {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  }
+
+  .extra-label {
+    width: 100px;
+    display: inline-block;
+    font-weight: bold;
+  }
+}

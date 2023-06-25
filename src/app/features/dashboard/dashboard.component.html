@@ -22,31 +22,46 @@
       <!-- Column Year -->
       <ng-container matColumnDef="year">
         <mat-header-cell *matHeaderCellDef>Year</mat-header-cell>
-        <mat-cell *matCellDef="let element">{{ element.year }}</mat-cell>
+        <mat-cell *matCellDef="let element">
+          <span class="extra-label">Year:</span>
+          {{ element.year }}
+        </mat-cell>
       </ng-container>
 
       <!-- Column Name -->
       <ng-container matColumnDef="name">
         <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
-        <mat-cell *matCellDef="let element">{{ element.firstName + ' ' + element.lastName }}</mat-cell>
+        <mat-cell *matCellDef="let element">
+          <span class="extra-label">Name:</span>
+          {{ element.firstName + ' ' + element.lastName }}
+        </mat-cell>
       </ng-container>
 
       <!-- Column TeamName -->
       <ng-container matColumnDef="teamName">
         <mat-header-cell *matHeaderCellDef>Team name</mat-header-cell>
-        <mat-cell *matCellDef="let element">{{ element.teamName }}</mat-cell>
+        <mat-cell *matCellDef="let element">
+          <span class="extra-label">Team name:</span>
+          {{ element.teamName }}
+        </mat-cell>
       </ng-container>
 
       <!-- Column Rank -->
       <ng-container matColumnDef="rank">
         <mat-header-cell *matHeaderCellDef>Rank</mat-header-cell>
-        <mat-cell *matCellDef="let element">{{ element.rank }}</mat-cell>
+        <mat-cell *matCellDef="let element">
+          <span class="extra-label">Rank:</span>
+          {{ element.rank }}
+        </mat-cell>
       </ng-container>
 
       <!-- Column Time -->
       <ng-container matColumnDef="nettoTime">
         <mat-header-cell *matHeaderCellDef>Time</mat-header-cell>
-        <mat-cell *matCellDef="let element">{{ element.nettoTime }}</mat-cell>
+        <mat-cell *matCellDef="let element">
+          <span class="extra-label">Time:</span>
+          {{ element.nettoTime }}
+        </mat-cell>
       </ng-container>
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
