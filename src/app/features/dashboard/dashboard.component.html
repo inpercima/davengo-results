@@ -64,6 +64,12 @@
         </mat-cell>
       </ng-container>
 
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" *ngIf="initialSearch && !loading" [attr.colspan]="displayedColumns.length">
+            No data matching the filter "{{ form.value.firstName }} {{ form.value.lastName }}"
+          </td>
+        </tr>
+
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
     </mat-table>

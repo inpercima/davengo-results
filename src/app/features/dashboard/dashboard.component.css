@@ -2,6 +2,14 @@
   display: none;
 }
 
+/*
+Workaround for displaying no data correct styled.
+See: https://github.com/angular/components/issues/26162
+*/
+.mat-mdc-no-data-row .mat-cell {
+  padding: 16px 24px;
+}
+
 @media screen and (max-width: 768px) {
   mat-header-row {
     display: none;

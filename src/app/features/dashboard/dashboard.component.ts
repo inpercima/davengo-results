@@ -30,6 +30,7 @@ import { DavengoService } from '../../core/davengo.service';
 })
 export class DashboardComponent implements OnInit {
   loading = false;
+  initialSearch = false;
   form!: FormGroup;
 
   dataSource = new MatTableDataSource<Ranking>();
@@ -45,6 +46,7 @@ export class DashboardComponent implements OnInit {
   }
 
   onSubmit(): void {
+    this.initialSearch = true;
     this.loading = true;
     this.dataSource = new MatTableDataSource();
     this.dashboardService
