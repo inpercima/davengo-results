@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { forkJoin, map, mergeMap, Observable, toArray } from 'rxjs';
+import { catchError, forkJoin, map, mergeMap, Observable, of, toArray } from 'rxjs';
 import { Ranking, YearRanking } from './ranking.model';
 import { Run, RunResult } from './run.model';
 
@@ -17,14 +17,11 @@ export class DavengoService {
     'https://www.davengo.com/event/result/commerzbank-firmenlauf-2017/',
     'https://www.davengo.com/event/result/schnellestellede-firmenlauf-2018/',
     'https://www.davengo.com/event/result/schnellestellede-firmenlauf-2019/',
-    /** no listing for 2020 */
-    /* 'https://www.davengo.com/event/result/schnellestellede-firmenlauf-2020/',
-     */
+    /** no listing for 2020 b/c of corona */
+    'https://www.davengo.com/event/result/schnellestellede-firmenlauf-2020/',
     'https://www.davengo.com/event/result/schnellestellede-firmenlauf-2021/',
     'https://www.davengo.com/event/result/schnellestellede-firmenlauf-2022/',
-    /** wait until run 2023
-     * 'https://www.davengo.com/event/result/schnellestellede-firmenlauf-2023/',
-     */
+    'https://www.davengo.com/event/result/schnellestellede-firmenlauf-2023/',
   ];
 
   constructor(private http: HttpClient) {}
@@ -45,7 +42,8 @@ export class DavengoService {
         type: 'extended',
       })
       .pipe(
-        mergeMap((response) => response.results),
+        catchError((error) => of(undefined)),
+        mergeMap((response) => (response ? response.results : new Array<RunResult>())),
         map((runResult: RunResult) => {
           return {
             teamName: runResult.teamName ?? runResult.team,
