@@ -1,5 +1,12 @@
 <mat-card class="w-4/5 mx-auto">
+  <mat-card-header>
+    <mat-card-title>Formular data</mat-card-title>
+  </mat-card-header>
   <mat-card-content>
+    <p>
+      Enter your first and last name to receive data from the result pages from <em>davengo.com</em> for <em>Firmenlauf Leipzig</em>.
+      In the background, the result pages of the years 2012-2023 are queried and displayed here in summary.
+    </p>
     <form [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
       <div class="flex gap-5">
         <mat-form-field class="basis-1/2">
