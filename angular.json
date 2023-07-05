@@ -4,7 +4,9 @@
   "cli": {
     "packageManager": "yarn",
     "schematicCollections": [
-      "@angular-eslint/schematics"
+      "@angular-eslint/schematics",
+      "@cypress/schematic",
+      "@schematics/angular"
     ]
   },
   "newProjectRoot": "projects",

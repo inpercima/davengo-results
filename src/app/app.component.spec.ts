@@ -1,15 +1,15 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
-import { RouterTestingModule } from '@angular/router/testing';
-import { AppRoutingPipe } from './app-routing.pipe';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [MatTabsModule, MatToolbarModule, RouterTestingModule, AppRoutingPipe, AppComponent],
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule, MatTabsModule, MatToolbarModule, NoopAnimationsModule, AppComponent],
     }).compileComponents();
   });
 
