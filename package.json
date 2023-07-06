@@ -61,7 +61,8 @@
     "build:dev": "ng lint && ng build --configuration=development",
     "serve:dev": "ng serve -o --configuration=development",
     "watch:dev": "ng build --watch --configuration=development",
-    "build:prod": "ng lint && ng build"
+    "build:prod": "ng lint && ng build",
+    "e2e:prod": "ng e2e --configuration production"
   },
   "version": "1.0.0-SNAPSHOT"
 }

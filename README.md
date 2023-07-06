@@ -71,7 +71,11 @@ yarn build:prod
 ng test
 
 # e2e
+# testing local with served app
 ng e2e
+
+# testing remote using production
+yarn e2e:prod
 ```
 
 ## Configuration
