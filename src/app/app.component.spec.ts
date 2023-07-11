@@ -1,6 +1,5 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -9,7 +8,7 @@ import { AppComponent } from './app.component';
 describe('AppComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, MatTabsModule, MatToolbarModule, NoopAnimationsModule, AppComponent],
+      imports: [HttpClientTestingModule, MatToolbarModule, NoopAnimationsModule, AppComponent],
     }).compileComponents();
   });
 
