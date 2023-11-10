@@ -19,11 +19,11 @@
       "prefix": "dr",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
             "outputPath": "dist",
             "index": "src/index.html",
-            "main": "src/main.ts",
+            "browser": "src/main.ts",
             "polyfills": [
               "zone.js"
             ],
@@ -59,16 +59,12 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ],
-              "namedChunks": true,
-              "vendorChunk": true
+              "namedChunks": true
             },
             "development": {
-              "buildOptimizer": false,
               "optimization": false,
-              "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
-              "namedChunks": true,
               "budgets": [
                 {
                   "type": "initial",
@@ -95,10 +91,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "davengo-results:build:production"
+              "buildTarget": "davengo-results:build:production"
             },
             "development": {
-              "browserTarget": "davengo-results:build:development"
+              "buildTarget": "davengo-results:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -106,7 +102,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "davengo-results:build"
+            "buildTarget": "davengo-results:build"
           }
         },
         "test": {
