@@ -29,7 +29,7 @@
     },
     "packageJson": {
       "contributors": [{
-        "name": "Marcel Jänicke",
+        "name": "Marcel Hendrich",
         "email": "inpercima@gmail.com"
       }],
       "homepage": "https://github.com/inpercima/davengo-results",
@@ -41,7 +41,7 @@
     "useYarn": true
   },
   "general": {
-    "author": "Marcel Jänicke",
+    "author": "Marcel Hendrich",
     "description": "",
     "modRewriteIndex": false,
     "name": "davengo-results",
