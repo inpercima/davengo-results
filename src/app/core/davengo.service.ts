@@ -42,7 +42,7 @@ export class DavengoService {
         type: 'extended',
       })
       .pipe(
-        catchError((error) => of(undefined)),
+        catchError(() => of(undefined)),
         mergeMap((response) => (response ? response.results : new Array<RunResult>())),
         map((runResult: RunResult) => {
           return {
