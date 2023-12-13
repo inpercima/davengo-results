@@ -16,10 +16,10 @@ jobs:
         node-version: '20.x'
     - name: Install and Build
       run: |
-          yarn install
-          yarn build:prod
+        yarn
+        yarn build:prod
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@v4
       with:
         branch: gh-pages
-        folder: dist
+        folder: dist/browser
