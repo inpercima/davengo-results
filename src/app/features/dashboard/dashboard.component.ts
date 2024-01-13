@@ -9,8 +9,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { map, mergeAll, mergeMap, toArray } from 'rxjs';
-import { Ranking } from 'src/app/core/ranking.model';
 import { DavengoService } from '../../core/davengo.service';
+import { Ranking } from '../../core/ranking.model';
 
 @Component({
   imports: [
