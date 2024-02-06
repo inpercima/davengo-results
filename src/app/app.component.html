@@ -1,25 +1,23 @@
-<div class="mat-app-background">
-  <mat-toolbar color="primary" class="mat-elevation-z4 justify-between">
-    {{ appname }}
-    <div>
-      <button mat-button (click)="openDialog(dialog)">APP INFO</button>
-      |
-      <a mat-button href="https://github.com/inpercima/davengo-results" target="_blank">
-        <img class="github-link" alt="GitHub Repository" src="../assets/github-mark-white.svg">
-        GitHub
-      </a>
-    </div>
-  </mat-toolbar>
-  <ng-template #dialog>
-    <h2 mat-dialog-title>Overview</h2>
-    <mat-dialog-content>
-      Shows the ranking of 'Firmenlauf Leipzig' for the years 2012-2023.
-      <br>
-      Users can check there results in one search.
-    </mat-dialog-content>
-    <mat-dialog-actions align="end">
-      <button mat-button mat-dialog-close cdkFocusInitial>Close</button>
-    </mat-dialog-actions>
-  </ng-template>
-  <dr-dashboard></dr-dashboard>
-</div>
+<mat-toolbar color="primary" class="mat-elevation-z4 justify-between">
+  {{ appname }}
+  <div>
+    <button mat-button (click)="openDialog(dialog)">APP INFO</button>
+    |
+    <a mat-button href="https://github.com/inpercima/davengo-results" target="_blank">
+      <img class="github-link" alt="GitHub Repository" src="../assets/github-mark-white.svg" />
+      GitHub
+    </a>
+  </div>
+</mat-toolbar>
+<ng-template #dialog>
+  <h2 mat-dialog-title>Overview</h2>
+  <mat-dialog-content>
+    Shows the ranking of 'Firmenlauf Leipzig' for the years 2012-2023.
+    <br />
+    Users can check there results in one search.
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close cdkFocusInitial>Close</button>
+  </mat-dialog-actions>
+</ng-template>
+<dr-dashboard></dr-dashboard>

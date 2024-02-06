@@ -1,9 +1,9 @@
-import { OverlayContainer } from '@angular/cdk/overlay';
-import { Component, HostBinding, TemplateRef } from '@angular/core';
+import { Component, Inject, TemplateRef } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { Title } from '@angular/platform-browser';
 
+import { DOCUMENT } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { environment } from '../environments/environment';
 import { DashboardComponent } from './features/dashboard/dashboard.component';
@@ -18,14 +18,10 @@ import { DashboardComponent } from './features/dashboard/dashboard.component';
 export class AppComponent {
   public appname: string;
 
-  // Adds the custom theme to the app root.
-  @HostBinding('class') class = `${environment.theme}-theme`;
-
-  public constructor(private dialog: MatDialog, private titleService: Title, public overlayContainer: OverlayContainer) {
+  public constructor(private dialog: MatDialog, private titleService: Title, @Inject(DOCUMENT) private document: Document) {
     this.appname = environment.appname;
     this.titleService.setTitle(this.appname);
-    // Adds the custom theme to dialogs.
-    this.overlayContainer.getContainerElement().classList.add(`${environment.theme}-theme`);
+    this.document.body.classList.add(`${environment.theme}-theme`);
   }
 
   openDialog(ref: TemplateRef<Element>): void {
