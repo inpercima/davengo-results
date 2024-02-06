@@ -4,8 +4,8 @@
   </mat-card-header>
   <mat-card-content>
     <p>
-      Enter your first and last name to receive data from the result pages from <em>davengo.com</em> for <em>Firmenlauf Leipzig</em>.
-      In the background, the result pages of the years 2012-2023 are queried and displayed here in summary.
+      Enter your first and last name to receive data from the result pages from <em>davengo.com</em> for <em>Firmenlauf Leipzig</em>. In the
+      background, the result pages of the years 2012-2023 are queried and displayed here in summary.
     </p>
     <form [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
       <div class="flex gap-5">
@@ -23,9 +23,12 @@
       </div>
     </form>
     <div class="h-1 mb-3">
-      <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+      @if(loading) {
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+      }
     </div>
-    <mat-table [dataSource]="dataSource" class="mat-elevation-z8" *ngIf="dataSource">
+    @if(dataSource) {
+    <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
       <!-- Column Year -->
       <ng-container matColumnDef="year">
         <mat-header-cell *matHeaderCellDef>Year</mat-header-cell>
@@ -40,7 +43,7 @@
         <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
         <mat-cell *matCellDef="let element">
           <span class="extra-label">Name:</span>
-          {{ element.firstName + ' ' + element.lastName }}
+          {{ element.firstName + " " + element.lastName }}
         </mat-cell>
       </ng-container>
 
@@ -71,14 +74,17 @@
         </mat-cell>
       </ng-container>
 
-        <tr class="mat-row" *matNoDataRow>
-          <td class="mat-cell" *ngIf="initialSearch && !loading" [attr.colspan]="displayedColumns.length">
-            No data matching the filter "{{ form.value.firstName }} {{ form.value.lastName }}"
-          </td>
-        </tr>
+      <tr class="mat-row" *matNoDataRow>
+        @if(initialSearch && !loading) {
+        <td class="mat-cell" [attr.colspan]="displayedColumns.length">
+          No data matching the filter "{{ form.value.firstName }} {{ form.value.lastName }}"
+        </td>
+        }
+      </tr>
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
     </mat-table>
+    }
   </mat-card-content>
 </mat-card>

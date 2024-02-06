@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 
-import { NgIf } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -13,16 +12,7 @@ import { DavengoService } from '../../core/davengo.service';
 import { Ranking } from '../../core/ranking.model';
 
 @Component({
-  imports: [
-    MatButtonModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatProgressBarModule,
-    MatTableModule,
-    NgIf,
-    ReactiveFormsModule,
-  ],
+  imports: [MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule, MatProgressBarModule, MatTableModule, ReactiveFormsModule],
   selector: 'dr-dashboard',
   standalone: true,
   templateUrl: './dashboard.component.html',
