@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, forkJoin, map, mergeMap, Observable, of, toArray } from 'rxjs';
+
 import { Ranking, YearRanking } from './ranking.model';
 import { Run, RunResult } from './run.model';
 
@@ -17,7 +18,7 @@ export class DavengoService {
     'https://www.davengo.com/event/result/commerzbank-firmenlauf-2017/',
     'https://www.davengo.com/event/result/schnellestellede-firmenlauf-2018/',
     'https://www.davengo.com/event/result/schnellestellede-firmenlauf-2019/',
-    /** no listing for 2020 b/c of corona */
+    /** no listing for 2020 b/c corona */
     'https://www.davengo.com/event/result/schnellestellede-firmenlauf-2020/',
     'https://www.davengo.com/event/result/schnellestellede-firmenlauf-2021/',
     'https://www.davengo.com/event/result/schnellestellede-firmenlauf-2022/',
