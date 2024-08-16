@@ -23,6 +23,7 @@ export class DavengoService {
     'https://www.davengo.com/event/result/schnellestellede-firmenlauf-2021/',
     'https://www.davengo.com/event/result/schnellestellede-firmenlauf-2022/',
     'https://www.davengo.com/event/result/schnellestellede-firmenlauf-2023/',
+    'https://www.davengo.com/event/result/schnellestellede-firmenlauf-2024/',
   ];
 
   constructor(private http: HttpClient) {}
