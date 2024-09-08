@@ -52,9 +52,6 @@ yarn build:dev
 
 # build and starts a server, rebuild after changes, reachable on http://localhost:4200/
 yarn serve:dev
-
-# build, rebuild after changes, reachable on http://localhost/app/path/to/dist/
-yarn watch:dev
 ```
 
 ### Package
@@ -71,11 +68,7 @@ yarn build:prod
 ng test
 
 # e2e
-# testing local with served app
 ng e2e
-
-# testing remote using production
-yarn e2e:prod
 ```
 
 ## Configuration
