@@ -14,7 +14,6 @@ import { Ranking } from '../../core/ranking.model';
 @Component({
   imports: [MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule, MatProgressBarModule, MatTableModule, ReactiveFormsModule],
   selector: 'dr-dashboard',
-  standalone: true,
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
 })
