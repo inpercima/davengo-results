@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { catchError, forkJoin, map, mergeMap, Observable, of, toArray } from 'rxjs';
 
 import { Ranking, YearRanking } from './ranking.model';
@@ -9,6 +9,8 @@ import { Run, RunResult } from './run.model';
   providedIn: 'root',
 })
 export class DavengoService {
+  private http = inject(HttpClient);
+
   private urls = [
     'https://www.davengo.com/event/result/5-commerzbank-firmenlauf-2012/',
     'https://www.davengo.com/event/result/6-commerzbank-firmenlauf-2013/',
@@ -25,8 +27,6 @@ export class DavengoService {
     'https://www.davengo.com/event/result/schnellestellede-firmenlauf-2023/',
     'https://www.davengo.com/event/result/schnellestellede-firmenlauf-2024/',
   ];
-
-  constructor(private http: HttpClient) {}
 
   getRuns(firstName: string, lastName: string): Observable<YearRanking[]> {
     return forkJoin(this.urls.map((url) => this.fetch(url, firstName, lastName)));

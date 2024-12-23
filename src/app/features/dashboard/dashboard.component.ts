@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 
@@ -18,14 +18,15 @@ import { Ranking } from '../../core/ranking.model';
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
+  private formBuilder = inject(FormBuilder);
+  private dashboardService = inject(DavengoService);
+
   loading = false;
   initialSearch = false;
   form!: FormGroup;
 
   dataSource = new MatTableDataSource<Ranking>();
   displayedColumns: string[] = ['year', 'name', 'teamName', 'rank', 'nettoTime'];
-
-  constructor(private formBuilder: FormBuilder, private dashboardService: DavengoService) {}
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
