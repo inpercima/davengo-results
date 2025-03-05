@@ -152,20 +152,6 @@
             "headless": false
           }
         },
-        "ct": {
-          "builder": "@cypress/schematic:cypress",
-          "options": {
-            "devServerTarget": "davengo-results:serve",
-            "watch": true,
-            "headless": false,
-            "testingType": "component"
-          },
-          "configurations": {
-            "development": {
-              "devServerTarget": "davengo-results:serve:development"
-            }
-          }
-        },
         "e2e": {
           "builder": "@cypress/schematic:cypress",
           "options": {
