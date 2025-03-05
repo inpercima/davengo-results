@@ -3,5 +3,5 @@ export const environment = {
   appname: 'Davengo results',
   defaultRoute: 'dashboard',
   production: true,
-  theme: 'indigo-pink',
+  theme: 'rose-red',
 };

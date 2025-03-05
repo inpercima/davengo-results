@@ -19,7 +19,7 @@
         </mat-form-field>
       </div>
       <div class="flex mb-3">
-        <button class="flex-1" mat-raised-button color="primary" [disabled]="!this.form.valid || loading">Search</button>
+        <button class="flex-1" mat-raised-button [disabled]="!this.form.valid || loading">Search</button>
       </div>
     </form>
     <div class="h-1 mb-3">
@@ -28,7 +28,7 @@
       }
     </div>
     @if(dataSource) {
-    <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <mat-table [dataSource]="dataSource">
       <!-- Column Year -->
       <ng-container matColumnDef="year">
         <mat-header-cell *matHeaderCellDef>Year</mat-header-cell>
