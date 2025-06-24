@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { catchError, forkJoin, map, mergeMap, Observable, of, toArray } from 'rxjs';
 
 import { Ranking, YearRanking } from './ranking.model';
@@ -12,6 +12,7 @@ export class DavengoService {
   private http = inject(HttpClient);
 
   private urls = [
+    'https://www.davengo.com/event/result/4-commerzbank-firmenlauf-leipzig-2011/',
     'https://www.davengo.com/event/result/5-commerzbank-firmenlauf-2012/',
     'https://www.davengo.com/event/result/6-commerzbank-firmenlauf-2013/',
     'https://www.davengo.com/event/result/7-commerzbank-firmenlauf-2014/',
