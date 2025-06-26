@@ -1,14 +1,13 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, type OnInit, inject } from '@angular/core';
+import { FormBuilder, type FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { map, mergeAll, mergeMap, toArray } from 'rxjs';
+import type { AppResult } from '../../core/app-result';
 import { DavengoService } from '../../core/davengo.service';
-import { AppResult } from '../../core/app-result';
 
 @Component({
   imports: [MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule, MatProgressBarModule, MatTableModule, ReactiveFormsModule],
@@ -18,7 +17,7 @@ import { AppResult } from '../../core/app-result';
 })
 export class DashboardComponent implements OnInit {
   private formBuilder = inject(FormBuilder);
-  private dashboardService = inject(DavengoService);
+  private davengoService = inject(DavengoService);
 
   loading = false;
   initialSearch = false;
@@ -31,6 +30,7 @@ export class DashboardComponent implements OnInit {
     this.form = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
+      differentLastName: [''],
     });
   }
 
@@ -38,20 +38,11 @@ export class DashboardComponent implements OnInit {
     this.initialSearch = true;
     this.loading = true;
     this.dataSource = new MatTableDataSource();
-    this.dashboardService
-      .getRuns(this.form.value.firstName, this.form.value.lastName)
-      .pipe(
-        mergeMap((yearRankings) => yearRankings),
-        map((yearRanking) => {
-          const ranking = yearRanking.rankings;
-          ranking.forEach((ranking) => (ranking.year = yearRanking.year));
-          return ranking;
-        }),
-        mergeAll(),
-        toArray()
-      )
-      .subscribe((ranking) => {
-        this.dataSource = new MatTableDataSource(ranking);
+
+    this.davengoService
+      .fetchAll(this.form.value.firstName, this.form.value.lastName, this.form.value.differentLastName)
+      .subscribe((appResult) => {
+        this.dataSource = new MatTableDataSource(appResult);
         this.loading = false;
       });
   }
