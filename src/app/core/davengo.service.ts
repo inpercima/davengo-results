@@ -27,6 +27,7 @@ export class DavengoService {
     'https://www.davengo.com/event/result/schnellestellede-firmenlauf-2022/',
     'https://www.davengo.com/event/result/schnellestellede-firmenlauf-2023/',
     'https://www.davengo.com/event/result/schnellestellede-firmenlauf-2024/',
+    'https://www.davengo.com/event/result/schnellestellede-firmenlauf-2025/'
   ];
 
   getRuns(firstName: string, lastName: string): Observable<YearRanking[]> {
