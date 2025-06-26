@@ -1,17 +1,4 @@
-export interface Run {
-  mode: string;
-  fields: RunField[];
-  results: RunResult[];
-}
-
-export interface RunField {
-  textAlignment: string;
-  id: string;
-  title: string;
-  priority: boolean;
-}
-
-export interface RunResult {
+export interface DavengoResult {
   /** 2012-2021 */
   teamName: string;
   /** 2022 */

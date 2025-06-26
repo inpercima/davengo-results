@@ -1,4 +1,4 @@
-export interface Ranking {
+export interface AppResult {
   teamName: string;
   firstName: string;
   lastName: string;
@@ -7,9 +7,4 @@ export interface Ranking {
   startNumber: number;
   year: string;
   nettoTime: string;
-}
-
-export interface YearRanking {
-  rankings: Ranking[];
-  year: string;
 }

@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { catchError, forkJoin, map, mergeMap, Observable, of, toArray } from 'rxjs';
-
-import { Ranking, YearRanking } from './ranking.model';
-import { Run, RunResult } from './run.model';
+import { AppResult } from './app-result';
+import { AppRow } from './app-row';
+import { DavengoList } from './davengo-list';
+import { DavengoResult } from './davengo-result';
 
 @Injectable({
   providedIn: 'root',
@@ -27,16 +28,16 @@ export class DavengoService {
     'https://www.davengo.com/event/result/schnellestellede-firmenlauf-2022/',
     'https://www.davengo.com/event/result/schnellestellede-firmenlauf-2023/',
     'https://www.davengo.com/event/result/schnellestellede-firmenlauf-2024/',
-    'https://www.davengo.com/event/result/schnellestellede-firmenlauf-2025/'
+    'https://www.davengo.com/event/result/schnellestellede-firmenlauf-2025/',
   ];
 
-  getRuns(firstName: string, lastName: string): Observable<YearRanking[]> {
+  getRuns(firstName: string, lastName: string): Observable<AppRow[]> {
     return forkJoin(this.urls.map((url) => this.fetch(url, firstName, lastName)));
   }
 
-  private fetch(url: string, firstName: string, lastName: string): Observable<YearRanking> {
+  private fetch(url: string, firstName: string, lastName: string): Observable<AppRow> {
     return this.http
-      .post<Run>(`${url}search/list`, {
+      .post<DavengoList>(`${url}search/list`, {
         category: 'Einzelwertung',
         offset: 0,
         query: {
@@ -47,8 +48,8 @@ export class DavengoService {
       })
       .pipe(
         catchError(() => of(undefined)),
-        mergeMap((response) => (response ? response.results : new Array<RunResult>())),
-        map((runResult: RunResult) => {
+        mergeMap((response) => (response ? response.results : new Array<DavengoResult>())),
+        map((runResult: DavengoResult) => {
           return {
             teamName: runResult.teamName ?? runResult.team,
             firstName: runResult.firstName,
@@ -58,14 +59,14 @@ export class DavengoService {
             startNumber: runResult.startNo,
             nettoTime: runResult.nettoTime,
             year: url.slice(url.length - 5, url.length - 1),
-          } as Ranking;
+          } as AppResult;
         }),
         toArray(),
         map((rankings) => {
           return {
             year: url.slice(url.length - 5, url.length - 1),
             rankings,
-          } as YearRanking;
+          } as AppRow;
         })
       );
   }

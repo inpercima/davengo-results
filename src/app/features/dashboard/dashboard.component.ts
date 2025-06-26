@@ -1,15 +1,14 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { MatCardModule } from '@angular/material/card';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { map, mergeAll, mergeMap, toArray } from 'rxjs';
 import { DavengoService } from '../../core/davengo.service';
-import { Ranking } from '../../core/ranking.model';
+import { AppResult } from '../../core/app-result';
 
 @Component({
   imports: [MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule, MatProgressBarModule, MatTableModule, ReactiveFormsModule],
@@ -25,7 +24,7 @@ export class DashboardComponent implements OnInit {
   initialSearch = false;
   form!: FormGroup;
 
-  dataSource = new MatTableDataSource<Ranking>();
+  dataSource = new MatTableDataSource<AppResult>();
   displayedColumns: string[] = ['year', 'name', 'teamName', 'rank', 'nettoTime'];
 
   ngOnInit(): void {
