@@ -29,9 +29,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   dataSource = new MatTableDataSource<AppResult>();
   displayedColumns: string[] = ['year', 'name', 'teamName', 'rank', 'nettoTime'];
 
-  lineChart: any;
+  lineChart!: Chart<'line'>;
 
-  lineChartConfig: ChartConfiguration = {
+  lineChartConfig: ChartConfiguration<'line'> = {
     type: 'line',
     data: {
       datasets: [
@@ -47,7 +47,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       scales: {
         y: {
           ticks: {
-            callback: function (val, index) {
+            callback: function (val) {
               // Hide every 2nd tick label
               return `${(Number(val) / 60).toFixed(2)} min`;
             },

@@ -9,7 +9,7 @@ This project was generated with [swaaplate](https://github.com/inpercima/swaapla
 
 ### Angular CLI
 
-* `@angular/cli 19.2.1` or higher
+* `@angular/cli 20.0.5` or higher
 
 ### Node, npm or pnpm
 
@@ -59,6 +59,12 @@ pnpm start
 ```bash
 # build in production mode, compressed
 pnpm build:prod
+```
+
+### Lint
+
+```bash
+ng lint
 ```
 
 ### Tests
