@@ -41,7 +41,7 @@ cp src/environments/environment.ts src/environments/environment.prod.ts
 
 ### Recommendation
 
-It is recommanded to use a server to get full access of all angular.
+It is recommended to use a server to get full access of all angular.
 For the other options your app should run on a server which you like.
 
 ### Run in development mode
