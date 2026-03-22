@@ -3,19 +3,17 @@
 [![MIT license](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE.md)
 [![Node CI/CD](https://github.com/inpercima/davengo-results/actions/workflows/ci_cd.yml/badge.svg)](https://github.com/inpercima/davengo-results/actions/workflows/ci_cd.yml)
 
-This project was generated with [swaaplate](https://github.com/inpercima/swaaplate) version 2.5.3.
-
 ## Prerequisites
 
 ### Angular CLI
 
-* `@angular/cli 20.3.5` or higher
+* `@angular/cli 21.2.3` or higher
 
 ### Node, npm or pnpm
 
-* `node 22.20.0` or higher in combination with
-  * `npm 10.9.3` or higher or
-  * `pnpm 10.18.2` or higher, used in this repository
+* `node 24.14.0` or higher in combination with
+  * `npm 11.9.0` or higher or
+  * `pnpm 10.32.0` or higher, used in this repository
 
 ## Getting started
 
