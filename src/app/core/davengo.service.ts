@@ -28,6 +28,7 @@ export class DavengoService {
     'https://www.davengo.com/event/result/schnellestellede-firmenlauf-2023/',
     'https://www.davengo.com/event/result/schnellestellede-firmenlauf-2024/',
     'https://www.davengo.com/event/result/schnellestellede-firmenlauf-2025/',
+    'https://www.davengo.com/event/result/schnellestellede-firmenlauf-2026/',
   ];
 
   private fetch(url: string, firstName: string, lastName: string, differentLastName: string): Observable<DavengoResult> {
