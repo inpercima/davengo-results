@@ -24,11 +24,11 @@
         </mat-form-field>
       </div>
       <div class="flex mb-3">
-        <button class="flex-1" mat-raised-button [disabled]="!this.form.valid || loading">Search</button>
+        <button class="flex-1" mat-raised-button [disabled]="!this.form.valid || loading()">Search</button>
       </div>
     </form>
     <div class="h-1 mb-3">
-      @if(loading) {
+      @if(loading()) {
       <mat-progress-bar mode="indeterminate"></mat-progress-bar>
       }
     </div>
@@ -80,7 +80,7 @@
       </ng-container>
 
       <tr class="mat-row" *matNoDataRow>
-        @if(initialSearch && !loading) {
+        @if(initialSearch() && !loading()) {
         <td class="mat-cell" [attr.colspan]="displayedColumns.length">
           No data matching the filter "{{ form.value.firstName }} {{ form.value.lastName }}"
         </td>

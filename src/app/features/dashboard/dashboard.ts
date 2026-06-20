@@ -1,4 +1,4 @@
-import { type AfterViewInit, Component, type OnInit, inject } from '@angular/core';
+import { type AfterViewInit, Component, type OnInit, inject, signal } from '@angular/core';
 import { FormBuilder, type FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -15,15 +15,15 @@ Chart.register(...registerables);
 @Component({
   imports: [MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule, MatProgressBarModule, MatTableModule, ReactiveFormsModule],
   selector: 'dr-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css'],
+  templateUrl: './dashboard.html',
+  styleUrls: ['./dashboard.css'],
 })
-export class DashboardComponent implements OnInit, AfterViewInit {
+export class Dashboard implements OnInit, AfterViewInit {
   private formBuilder = inject(FormBuilder);
   private davengoService = inject(DavengoService);
 
-  loading = false;
-  initialSearch = false;
+  loading = signal(false);
+  initialSearch = signal(false);
   form!: FormGroup;
 
   dataSource = new MatTableDataSource<AppResult>();
@@ -38,7 +38,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         {
           data: [],
           label: 'Davengo data',
-          tension: 0.5
+          tension: 0.5,
         },
       ],
       labels: [],
@@ -70,15 +70,15 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   onSubmit(): void {
-    this.initialSearch = true;
-    this.loading = true;
+    this.initialSearch.set(true);
+    this.loading.set(true);
     this.dataSource = new MatTableDataSource();
 
     this.davengoService
       .fetchAll(this.form.value.firstName, this.form.value.lastName, this.form.value.differentLastName)
       .subscribe((appResult) => {
         this.dataSource = new MatTableDataSource(appResult);
-        this.loading = false;
+        this.loading.set(false);
         this.lineChartConfig.data.labels = appResult.map((result) => result.year);
         this.lineChartConfig.data.datasets[0].data = appResult.map((result) => this.#convertTimeToTimestamp(result.nettoTime));
         this.lineChart.update();
