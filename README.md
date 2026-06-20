@@ -7,7 +7,7 @@
 
 ### Angular CLI
 
-* `@angular/cli 21.2.3` or higher
+* `@angular/cli 22.0.2` or higher
 
 ### Node, npm or pnpm
 
