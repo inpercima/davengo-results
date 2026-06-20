@@ -11,9 +11,9 @@
 
 ### Node, npm or pnpm
 
-* `node 24.14.0` or higher in combination with
-  * `npm 11.9.0` or higher or
-  * `pnpm 10.32.0` or higher, used in this repository
+* `node 24.16.0` or higher in combination with
+  * `npm 11.13.0` or higher or
+  * `pnpm 11.8.0` or higher, used in this repository
 
 ## Getting started
 
