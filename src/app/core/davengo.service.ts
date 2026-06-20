@@ -1,13 +1,11 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
+import { Service, inject } from '@angular/core';
 import { catchError, forkJoin, map, of, type Observable } from 'rxjs';
 import type { AppResult } from './app-result';
 import type { DavengoList } from './davengo-list';
 import type { DavengoResult } from './davengo-result';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Service()
 export class DavengoService {
   private http = inject(HttpClient);
 
@@ -56,7 +54,7 @@ export class DavengoService {
           } else {
             return {} as DavengoResult;
           }
-        })
+        }),
       );
     };
 
@@ -80,9 +78,9 @@ export class DavengoService {
               nettoTime: davengoResult.nettoTime,
               year: url.slice(url.length - 5, url.length - 1),
             } as AppResult;
-          })
-        )
-      )
+          }),
+        ),
+      ),
     ).pipe(map((appResults) => appResults.filter((appResult) => appResult.teamName !== undefined)));
   }
 }
