@@ -20,7 +20,7 @@ describe('App', () => {
   it(`should have as appname 'Davengo results'`, () => {
     const fixture = TestBed.createComponent(App);
     const app = fixture.componentInstance;
-    expect(app.appname).toEqual('Davengo results');
+    expect(app.appname()).toEqual('Davengo results');
   });
 
   it('should render toolbar', () => {

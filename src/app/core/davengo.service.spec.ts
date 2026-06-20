@@ -1,6 +1,7 @@
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { DavengoService } from './davengo.service';
 
 describe('DavengoService', () => {
@@ -8,7 +9,7 @@ describe('DavengoService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
+      providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()],
     }).compileComponents();
     service = TestBed.inject(DavengoService);
   });
