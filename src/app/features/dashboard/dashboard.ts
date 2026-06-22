@@ -61,7 +61,8 @@ export class Dashboard implements OnInit, AfterViewInit {
     this.form = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      differentLastName: [''],
+      alternativeFirstName: [''],
+      alternativeLastName: [''],
     });
   }
 
@@ -75,7 +76,7 @@ export class Dashboard implements OnInit, AfterViewInit {
     this.dataSource = new MatTableDataSource();
 
     this.davengoService
-      .fetchAll(this.form.value.firstName, this.form.value.lastName, this.form.value.differentLastName)
+      .fetchAll(this.form.value.firstName, this.form.value.lastName, this.form.value.alternativeFirstName, this.form.value.alternativeLastName)
       .subscribe((appResult) => {
         this.dataSource = new MatTableDataSource(appResult);
         this.loading.set(false);

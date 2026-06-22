@@ -29,8 +29,14 @@ export class DavengoService {
     'https://www.davengo.com/event/result/schnellestellede-firmenlauf-2026/',
   ];
 
-  private fetch(url: string, firstName: string, lastName: string, differentLastName: string): Observable<DavengoResult> {
-    const makeRequest = (lastName: string) => {
+  private fetch(
+    url: string,
+    firstName: string,
+    lastName: string,
+    alternativeFirstName: string,
+    alternativeLastName: string,
+  ): Observable<DavengoResult> {
+    const makeRequest = (firstName: string, lastName: string) => {
       return this.http
         .post<DavengoList>(`${url}search/list`, {
           category: 'Einzelwertung',
@@ -45,12 +51,22 @@ export class DavengoService {
     };
 
     const fetchBothNames = () => {
-      return forkJoin([makeRequest(lastName), makeRequest(differentLastName)]).pipe(
-        map(([resA, resB]) => {
+      const requests = [];
+      requests.push(makeRequest(firstName, lastName));
+      if (alternativeLastName) {
+        requests.push(makeRequest(firstName, alternativeLastName));
+      }
+      if (alternativeFirstName) {
+        requests.push(makeRequest(alternativeFirstName, lastName));
+      }
+      return forkJoin(requests).pipe(
+        map(([resA, resB, resC]) => {
           if (resA?.results.length) {
             return resA.results[0];
           } else if (resB?.results.length) {
             return resB.results[0];
+          } else if (resC?.results.length) {
+            return resC.results[0];
           } else {
             return {} as DavengoResult;
           }
@@ -58,15 +74,15 @@ export class DavengoService {
       );
     };
 
-    return differentLastName
+    return alternativeFirstName || alternativeLastName
       ? fetchBothNames()
-      : makeRequest(lastName).pipe(map((response) => (response?.results.length ? response.results[0] : ({} as DavengoResult))));
+      : makeRequest(firstName, lastName).pipe(map((response) => (response?.results.length ? response.results[0] : ({} as DavengoResult))));
   }
 
-  fetchAll(firstName: string, lastName: string, differentLastName: string): Observable<AppResult[]> {
+  fetchAll(firstName: string, lastName: string, alternativeFirstName: string, alternativeLastName: string): Observable<AppResult[]> {
     return forkJoin(
       this.#urls.map((url) =>
-        this.fetch(url, firstName, lastName, differentLastName).pipe(
+        this.fetch(url, firstName, lastName, alternativeFirstName, alternativeLastName).pipe(
           map((davengoResult: DavengoResult) => {
             return {
               teamName: davengoResult.teamName ?? davengoResult.team,
