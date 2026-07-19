@@ -3,76 +3,117 @@
 [![MIT license](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE.md)
 [![Node CI/CD](https://github.com/inpercima/davengo-results/actions/workflows/ci_cd.yml/badge.svg)](https://github.com/inpercima/davengo-results/actions/workflows/ci_cd.yml)
 
+Shows you race results from davengo.com for the Leipzig Company Run from 2011 to 2026.
+
+This app is available at [davengo-results.inpercima.net](https://davengo-results.inpercima.net).
+
 ## Prerequisites
-
-### Angular CLI
-
-* `@angular/cli 22.0.2` or higher
 
 ### Node, npm or pnpm
 
 * `node 24.16.0` or higher in combination with
   * `npm 11.13.0` or higher or
-  * `pnpm 11.8.0` or higher, used in this repository
+  * `pnpm 11.14.0` or higher, used in this repository
+
+Install pnpm by running:
+
+```bash
+npm install -g pnpm@11.14.0
+```
+
+### Info for npm and pnpm
+
+This repo uses `pnpm` as package manager.
+You can also use `npm` for your local work but changes will be made by `pnpm` only.
+
+### Angular CLI
+
+* `@angular/cli 22.0.5` or higher
+
+Install @angular/cli by running:
+
+```bash
+pnpm install -g @angular/cli@22
+```
 
 ## Getting started
 
 ```bash
 # clone project
 git clone https://github.com/inpercima/davengo-results
+
+# navigate to project
 cd davengo-results
 
 # install tools and frontend dependencies
 pnpm install
-```
 
-Create environment files for `development mode` and `production mode`.
-
-```bash
+# create environment files for `development mode`.
 cp src/environments/environment.ts src/environments/environment.dev.ts
-cp src/environments/environment.ts src/environments/environment.prod.ts
 ```
 
-**Note**: These files will not be under version control but listed in .gitignore.
+**Note**: This file will not be under version control (listed in .gitignore).
 
-## Usage
+## Development Mode
 
-### Recommendation
+### Setup for development
 
-It is recommended to use a server to get full access of all angular.
-For the other options your app should run on a server which you like.
+Edit `src/environments/environment.dev.ts` to match your local setup:
 
-### Run in development mode
+* Set `production: false`
+* Configure `api` URL (default: `./api/`)
+* Adjust other settings as needed (see [Configuration](#configuration) section)
+
+### Running in development mode
 
 ```bash
-# build, reachable on http://localhost/app/path/to/dist/
-pnpm build:dev
-
-# build and starts a server, rebuild after changes, reachable on http://localhost:4200/
 pnpm start
 ```
 
-### Package
+The application will be available at [http://localhost:4200/](http://localhost:4200/) and automatically reload when you make changes to the source code.
+
+### Building for development
 
 ```bash
-# build in production mode, compressed
+pnpm build:dev
+```
+
+This runs `ng lint` followed by `ng build --configuration=development`, creating a development build in the `dist/` directory.
+
+## Production Mode
+
+### Setup for production
+
+Edit `src/environments/environment.prod.ts`:
+
+* Set `production: true`
+* Configure production `api` URL
+* Set appropriate theme and other production-specific settings
+
+### Building for production
+
+```bash
 pnpm build:prod
 ```
 
-### Lint
+This runs `ng lint` followed by `ng build` (production configuration), creating an optimized bundle in `dist/browser/`.
+
+### Deployment
+
+The app did not have a specified version.
+After a push to the main branch the app will be deployed by the github actions using github pages.
+
+## Testing and linting
 
 ```bash
-ng lint
-```
-
-### Tests
-
-```bash
-# test
+# run unit tests
 ng test
 
-# e2e
+# run end-to-end tests
 ng e2e
+
+# lint files
+ng lint
 ```
 
 ## Configuration
@@ -87,7 +128,6 @@ Change for `production mode` the option `production` to `true`.
 
 * [api](#api)
 * [appname](#appname)
-* [defaultRoute](#defaultroute)
 * [production](#production)
 * [theme](#theme)
 
@@ -103,13 +143,6 @@ Defines the URL to the backend.
 Applicationwide title of the app, displayed in title and toolbar.
 
 * default: `Davengo results`
-* type: `string`
-
-### `defaultRoute`
-
-The default route and the route to be redirected after a login if no route is stored or if a route does not exist.
-
-* default: `dashboard`
 * type: `string`
 
 ### `production`
