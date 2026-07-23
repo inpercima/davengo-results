@@ -1,7 +1,7 @@
 # Davengo results
 
 [![MIT license](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE.md)
-[![Node CI/CD](https://github.com/inpercima/davengo-results/actions/workflows/ci_cd.yml/badge.svg)](https://github.com/inpercima/davengo-results/actions/workflows/ci_cd.yml)
+[![Node CI](https://github.com/inpercima/davengo-results/actions/workflows/node_ci.yml/badge.svg)](https://github.com/inpercima/davengo-results/actions/workflows/node_ci.yml)
 
 Shows you race results from davengo.com for the Leipzig Company Run from 2011 to 2026.
 
