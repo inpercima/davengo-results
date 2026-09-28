@@ -7,7 +7,7 @@ import { environment } from '../environments/environment';
 import { Dashboard } from './features/dashboard/dashboard';
 
 @Component({
-  selector: 'dr-root',
+  selector: 'app-root',
   templateUrl: './app.html',
   styleUrls: ['./app.css'],
   imports: [Dashboard, MatButtonModule, MatDialogModule, MatToolbarModule],

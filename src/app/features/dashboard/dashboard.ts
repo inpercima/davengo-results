@@ -14,7 +14,7 @@ Chart.register(...registerables);
 
 @Component({
   imports: [MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule, MatProgressBarModule, MatTableModule, ReactiveFormsModule],
-  selector: 'dr-dashboard',
+  selector: 'app-dashboard',
   templateUrl: './dashboard.html',
   styleUrls: ['./dashboard.css'],
 })
