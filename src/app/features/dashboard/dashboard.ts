@@ -29,6 +29,8 @@ export class Dashboard implements OnInit, AfterViewInit {
   dataSource = new MatTableDataSource<AppResult>();
   displayedColumns: string[] = ['year', 'name', 'teamName', 'rank', 'nettoTime'];
 
+  medals = signal<Record<string, string>>({});
+
   lineChart!: Chart<'line'>;
 
   lineChartConfig: ChartConfiguration<'line'> = {
@@ -80,10 +82,21 @@ export class Dashboard implements OnInit, AfterViewInit {
       .subscribe((appResult) => {
         this.dataSource = new MatTableDataSource(appResult);
         this.loading.set(false);
+        this.medals.set(this.#determineMedals(appResult));
         this.lineChartConfig.data.labels = appResult.map((result) => result.year);
         this.lineChartConfig.data.datasets[0].data = appResult.map((result) => this.#convertTimeToTimestamp(result.nettoTime));
         this.lineChart.update();
       });
+  }
+
+  #determineMedals(results: AppResult[]): Record<string, string> {
+    const names = ['gold', 'silver', 'bronze'];
+    const medals: Record<string, string> = {};
+    [...results]
+      .sort((a, b) => this.#convertTimeToTimestamp(a.nettoTime) - this.#convertTimeToTimestamp(b.nettoTime))
+      .slice(0, 3)
+      .forEach((result, index) => (medals[result.year] = names[index]));
+    return medals;
   }
 
   #convertTimeToTimestamp(timeString: string): number {
