@@ -48,6 +48,17 @@
         <mat-cell *matCellDef="let element">
           <span class="extra-label">Year:</span>
           {{ element.year }}
+          @switch (medals()[element.year]) {
+            @case ('gold') {
+              <span class="medal-icon" role="img" aria-label="Gold medal">🥇</span>
+            }
+            @case ('silver') {
+              <span class="medal-icon" role="img" aria-label="Silver medal">🥈</span>
+            }
+            @case ('bronze') {
+              <span class="medal-icon" role="img" aria-label="Bronze medal">🥉</span>
+            }
+          }
         </mat-cell>
       </ng-container>
 
