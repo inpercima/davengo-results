@@ -20,4 +20,24 @@ describe('Dashboard', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should display the team, company, and start number in the results table', () => {
+    component.dataSource.data = [
+      {
+        teamName: 'Fast Runners',
+        firstName: 'Alex',
+        lastName: 'Runner',
+        company: 'Acme',
+        rank: '1',
+        startNumber: 42,
+        year: '2026',
+        nettoTime: '00:20:00',
+      },
+    ];
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.textContent).toContain('Fast Runners');
+    expect(fixture.nativeElement.textContent).toContain('Acme');
+    expect(fixture.nativeElement.textContent).toContain('42');
+  });
 });

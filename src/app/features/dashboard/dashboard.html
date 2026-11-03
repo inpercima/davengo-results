@@ -71,12 +71,30 @@
         </mat-cell>
       </ng-container>
 
-      <!-- Column TeamName -->
+      <!-- Column Team -->
       <ng-container matColumnDef="teamName">
-        <mat-header-cell *matHeaderCellDef>Team name</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef>Team</mat-header-cell>
         <mat-cell *matCellDef="let element">
-          <span class="extra-label">Team name:</span>
+          <span class="extra-label">Team:</span>
           {{ element.teamName }}
+        </mat-cell>
+      </ng-container>
+
+      <!-- Column Company -->
+      <ng-container matColumnDef="company">
+        <mat-header-cell *matHeaderCellDef>Company</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <span class="extra-label">Company:</span>
+          {{ element.company }}
+        </mat-cell>
+      </ng-container>
+
+      <!-- Column Start number -->
+      <ng-container matColumnDef="startNumber">
+        <mat-header-cell *matHeaderCellDef>Start number</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <span class="extra-label">Start number:</span>
+          {{ element.startNumber }}
         </mat-cell>
       </ng-container>
 
