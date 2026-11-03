@@ -27,7 +27,7 @@ export class Dashboard implements OnInit, AfterViewInit {
   form!: FormGroup;
 
   dataSource = new MatTableDataSource<AppResult>();
-  displayedColumns: string[] = ['year', 'name', 'teamName', 'rank', 'nettoTime'];
+  displayedColumns: string[] = ['year', 'name', 'teamName', 'company', 'startNumber', 'rank', 'nettoTime'];
 
   medals = signal<Record<string, string>>({});
 
